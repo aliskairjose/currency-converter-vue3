@@ -11,10 +11,10 @@
     <footer class="w-full pt-4 ">
         <hr class="h-0.5 border-t-0 bg-blue-500 opacity-100 dark:opacity-50" />
         <div class="flex lg:flex-row flex-col items-center lg:p-6 p-4 max-w-[1280px] mx-auto">
-            <div class="flex lg:flex-1 flex-none text-left md:text-base text-sm ">
+            <div class="flex lg:flex-1 flex-none text-left md:text-base text-sm gap-2">
                 © {{currentYear}}. Desarrollada con
-                <img src="../assets/vue.svg" class="ms-1 h-5" /> +
-                <img src="../assets/vite.svg" class="h-5" />  +
+                <img src="../assets/vue.svg" class="ms-1 h-5" /> 
+                <img src="../assets/vite.svg" class="h-5" />  
                 <img class="h-5 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
             </div>
             <div class="lg:flex-1 flex-none">
