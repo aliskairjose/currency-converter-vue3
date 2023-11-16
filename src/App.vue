@@ -1,64 +1,56 @@
+
 <script setup>
-import { ref, computed, onMounted, nextTick, watch, watchEffect } from "vue";
-import { currencyList, converter } from './providers/api'
+  import { ref, computed, onMounted, nextTick, watch, watchEffect } from "vue";
+  import { currencyList, converter } from './providers/api'
+  import ButtonChangeCurrency from "./components/ButtonChangeCurrency.vue";
+  import Footer from "./components/Footer.vue";
 
-const currencies = ref( [] )
-const baseCurrency = ref( { code: 'USD', name: "US Dollar", } )
-const currency = ref( { code: 'EUR', name: 'Euro' } )
-const importe = ref( 1 )
-const rate = ref( 0 );
+  const currencies = ref( [] )
+  const baseCurrency = ref( { code: 'USD', name: "US Dollar", } )
+  const currency = ref( { code: 'EUR', name: 'Euro' } )
+  const importe = ref( 1 )
+  const rate = ref( 0 );
 
-onMounted( () => {
-  getCurrencies();
+  onMounted( () => {
+    getCurrencies();
+  } )
 
-} )
+  // Vigila todos los cambios de las propiedades reactivas del dom,
+  watchEffect( () => {
+    getConverter();
+  })
 
-// Vigila todos los cambios de las propiedades reactivas del dom,
-watchEffect( () => {
-  getConverter();
-})
 
-// El watch trabaja como observable, viggilando los cambios de las propiedades establecidas
+  async function getCurrencies () {
+    currencies.value = await currencyList();
+    await nextTick()
+  }
 
-// watch(baseCurrency, ()=>{
-//   console.log('watch');
-//   getConverter()
-// })
+  async function getConverter () {
+    rate.value = await converter( baseCurrency.value.code, currency.value.code );
+  }
 
-// watch(currency, ()=>{
-//   console.log('watch');
-//   getConverter()
-// })
+  function changeCurrency () {
+    // ae aplica el cambio de monedas y se actualiza los valores, activando el watch
+    const base = baseCurrency.value;
+    const curr = currency.value
+    baseCurrency.value = curr;
+    currency.value = base
+  }
 
-async function getCurrencies () {
-  currencies.value = await currencyList();
-  await nextTick()
-}
+  const computedRate = computed(()=>{
+    const _rate = rate.value[currency.value.code] * importe.value
+    return _rate || 0
+  })
 
-async function getConverter () {
-  rate.value = await converter( baseCurrency.value.code, currency.value.code );
-}
-
-function changeCurrency () {
-  // ae aplica el cambio de monedas y se actualiza los valores, activando el watch
-  const base = baseCurrency.value;
-  const curr = currency.value
-  baseCurrency.value = curr;
-  currency.value = base
-}
-
-const computedRate = computed(()=>{
-  const _rate = rate.value[currency.value.code] * importe.value
-  return _rate || 0
-})
-
-const computedReverseRate = computed(()=>{
-  const _rate = importe.value / rate.value[ currency.value.code ]
-  return _rate || 0
-})
+  const computedReverseRate = computed(()=>{
+    const _rate = importe.value / rate.value[ currency.value.code ]
+    return _rate || 0
+  })
 </script>
 
 <template>
+  <h1>Currency Converter</h1>
   <div class="grid gap-6 container mx-auto border rounded-xl px-10 py-14 shadow-xl bg-white w-10/12">
     <div class="">
       <form @submit.prevent class="flex justify-between gap-4 text-justify">
@@ -75,14 +67,8 @@ const computedReverseRate = computed(()=>{
           </select>
         </div>
         <div class="grid place-items-end">
-          <button class="rounded-full border border-gray-300 h-14 w-14 hover:border-blue-500 hover:bg-gray-200 "
-            @click=" changeCurrency ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
-            </svg>
-          </button>
+          <ButtonChangeCurrency @clickHandler="changeCurrency" />
+
         </div>
         <div class="flex-1">
           <p class="font-semibold pb-1">a</p>
@@ -124,6 +110,10 @@ const computedReverseRate = computed(()=>{
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
-<style scoped></style>
+
+<style lang="scss" scoped>
+
+</style>
