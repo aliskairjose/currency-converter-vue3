@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-around w-10/12 gap-6">
+    <div class="flex lg:flex-row flex-col justify-around w-10/12 gap-6">
         <div class="w-full shadow-md rounded-md pb-4" >
             <div class="bg-sky-100 rounded-t-md pt-4 font-bold">
                 <h3 class="text-center">Convertir {{data.baseCurrency.name}} a {{data.currency.name}}</h3>

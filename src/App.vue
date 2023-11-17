@@ -53,25 +53,24 @@ import ConverterTable from "./components/ConverterTable.vue";
 </script>
 
 <template>
-  <h1>Currency Converter</h1>
-  <div class="grid gap-6 container mx-auto border rounded-xl px-10 py-14 shadow-xl bg-white w-10/12 mb-20">
+  <h1 class="text-center text-4xl lg:text-5xl my-10">Currency Converter</h1>
+  <div class="grid gap-6 container mx-auto border rounded-xl lg:px-10 px-4 py-14 shadow-xl bg-white lg:w-10/12 w-11/12 mb-20">
     <div class="">
-      <form @submit.prevent class="flex justify-between gap-4 text-justify">
+      <form @submit.prevent class="flex flex-col lg:flex-row justify-between lg:gap-4 gap-1 text-justify">
         <div class="flex-1">
           <p class="font-semibold pb-1">Importe</p>
           <input v-model=" importe " class="border rounded-md border-gray-300 p-3 w-full" type="text" />
         </div>
         <div class="flex-1">
-          <p class="font-semibold pb-1">De:</p>
+          <p class="font-semibold pb-1">De</p>
           <select v-model=" baseCurrency " class="border rounded-md border-gray-300 p-3 w-full">
             <option v-for="bCurr in currencies" :value=" bCurr " :key="bCurr.code">
               {{ bCurr.code }} - {{ bCurr.name }}
             </option>
           </select>
         </div>
-        <div class="grid place-items-end">
+        <div class="grid lg:place-items-end place-items-center">
           <ButtonChangeCurrency @clickHandler="changeCurrency" />
-
         </div>
         <div class="flex-1">
           <p class="font-semibold pb-1">a</p>
@@ -87,22 +86,22 @@ import ConverterTable from "./components/ConverterTable.vue";
       <p class="font-semibold text-gray-500">
         {{ importe }} {{ baseCurrency.name }} =
       </p>
-      <p class="text-4xl">
+      <p class="text-3xl lg:text-4xl">
         {{ computedRate }} {{ currency.name  }}
       </p>
       <p class="text-gray-500">
         1 {{ currency.code }} = {{ computedReverseRate }} {{ baseCurrency.code }}
       </p>
     </div>
-    <div class="flex justify-between">
-      <div class="w-1/2">
-        <div class="bg-sky-50 w-10/12 text-xs text-gray-600 p-3 rounded-md text-justify">
+    <div class="flex flex-col lg:flex-row justify-between">
+      <div class="lg:w-1/2 w-full">
+        <div class="bg-sky-50 lg:w-10/12 w-full text-xs text-gray-600 p-3 rounded-md text-justify">
           Usamos la tasa del mercado medio para nuestro conversor. Esto solo tiene fines informativos. No
           recibirás esta tasa cuando envíes dinero. <span class="text-blue-600">Consulta las tasas de
             envío.</span>
         </div>
       </div>
-      <div class="w-1/2 text-right">
+      <div class="lg:w-1/2 w-full lg:text-right text-center mt-4 lg:mt-0">
         <button class="py-2 px-6 text-white bg-sky-500 rounded-md mb-4">
           Ver contizacón de transferencia
         </button>

@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <button class="rounded-full border border-gray-300 h-14 w-14 hover:border-blue-500 hover:bg-gray-200 "
+    <button class="rounded-full border border-gray-300 h-14 hover:border-blue-500 hover:bg-gray-200 "
         @click="$emit('clickHandler')">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right"
             viewBox="0 0 16 16">
