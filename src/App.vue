@@ -53,7 +53,7 @@ import ConverterTable from "./components/ConverterTable.vue";
 </script>
 
 <template>
-  <h1 class="text-center text-4xl lg:text-5xl my-10">Currency Converter</h1>
+  <h1 class="lg:w-10/12 w-11/12 text-left text-4xl lg:text-5xl my-10 font-semibold">Conversor de divisas</h1>
   <div class="grid gap-6 container mx-auto border rounded-xl lg:px-10 px-4 py-14 shadow-xl bg-white lg:w-10/12 w-11/12 mb-20">
     <div class="">
       <form @submit.prevent class="flex flex-col lg:flex-row justify-between lg:gap-4 gap-1 text-justify">
