@@ -1,6 +1,5 @@
 
 <script setup>
-    // defineProps( [ 'title' ] )
     defineEmits(['clickHandler'])
 
 </script>
