@@ -118,7 +118,6 @@ import ConverterTable from "./components/ConverterTable.vue";
     currency,
     rate
   }" />
-  <!-- <ConverterTable :data={} :="baseCurrency" :currency="currency" :rate="rate"/> -->
   <Footer />
 </template>
 
