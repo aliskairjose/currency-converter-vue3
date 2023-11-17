@@ -1,6 +1,6 @@
 <template>
     <div class="flex lg:flex-row flex-col justify-around w-10/12 gap-6">
-        <div class="w-full shadow-md rounded-md pb-4" >
+        <div class="w-full shadow-md rounded-md pb-4 bg-white" >
             <div class="bg-sky-100 rounded-t-md pt-4 font-bold">
                 <h3 class="text-center">Convertir {{data.baseCurrency.name}} a {{data.currency.name}}</h3>
                 <div class="flex justify-around mb-1 text-center my-3">
@@ -15,7 +15,7 @@
                 </li>
             </ul>
         </div>
-        <div class="w-full shadow-md rounded-md pb-4">
+        <div class="w-full shadow-md rounded-md pb-4 bg-white">
             <div class="bg-sky-100 rounded-t-md pt-4 font-bold">
                 <h3 class="text-center ">Convertir {{data.currency.name}} a {{data.baseCurrency.name}}</h3>
                 <div class="flex justify-around mb-1 text-center my-3">
