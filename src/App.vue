@@ -4,6 +4,7 @@
   import { currencyList, converter } from './providers/api'
   import ButtonChangeCurrency from "./components/ButtonChangeCurrency.vue";
   import Footer from "./components/Footer.vue";
+import ConverterTable from "./components/ConverterTable.vue";
 
   const currencies = ref( [] )
   const baseCurrency = ref( { code: 'USD', name: "US Dollar", } )
@@ -15,11 +16,13 @@
     getCurrencies();
   } )
 
-  // Vigila todos los cambios de las propiedades reactivas del dom,
+  /**
+   * Vigila todos los cambios de las propiedades reactivas del dom,
+   * observará cambios en todos los valores reactivos referenciados dentro de su callback
+   * */
   watchEffect( () => {
     getConverter();
   })
-
 
   async function getCurrencies () {
     currencies.value = await currencyList();
@@ -51,7 +54,7 @@
 
 <template>
   <h1>Currency Converter</h1>
-  <div class="grid gap-6 container mx-auto border rounded-xl px-10 py-14 shadow-xl bg-white w-10/12">
+  <div class="grid gap-6 container mx-auto border rounded-xl px-10 py-14 shadow-xl bg-white w-10/12 mb-20">
     <div class="">
       <form @submit.prevent class="flex justify-between gap-4 text-justify">
         <div class="flex-1">
@@ -110,6 +113,12 @@
       </div>
     </div>
   </div>
+  <ConverterTable :data="{
+    baseCurrency,
+    currency,
+    rate
+  }" />
+  <!-- <ConverterTable :data={} :="baseCurrency" :currency="currency" :rate="rate"/> -->
   <Footer />
 </template>
 
