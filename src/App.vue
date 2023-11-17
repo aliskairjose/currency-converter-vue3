@@ -86,7 +86,7 @@ import ConverterTable from "./components/ConverterTable.vue";
       <p class="font-semibold text-gray-500">
         {{ importe }} {{ baseCurrency.name }} =
       </p>
-      <p class="text-3xl lg:text-4xl">
+      <p class="text-2xl lg:text-4xl">
         {{ computedRate }} {{ currency.name  }}
       </p>
       <p class="text-gray-500">
